@@ -1,0 +1,347 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14017,        339]
+NotebookOptionsPosition[     12665,        303]
+NotebookOutlinePosition[     13007,        318]
+CellTagsIndexPosition[     12964,        315]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"sourceFiles", "=", 
+   RowBox[{"AssociationMap", "[", 
+    RowBox[{"Reverse", ",", 
+     RowBox[{"AssociationMap", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"StringDelete", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"FileNameSplit", "[", "#", "]"}], "\[LeftDoubleBracket]", 
+           RowBox[{"-", "1"}], "\[RightDoubleBracket]"}], ",", 
+          RowBox[{
+          "RegularExpression", "[", 
+           "\"\<[0-9]{3}_|(_source)?.[a-zA-Z0-9]{3}$\>\"", "]"}]}], "]"}], 
+        "&"}], ",", 
+       RowBox[{"FileNames", "[", 
+        RowBox[{"\"\<*.*\>\"", ",", 
+         RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<data\>\"", 
+            ",", "\"\<sound src\>\""}], "}"}], "]"}]}], "]"}]}], "]"}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sounds", "=", 
+   RowBox[{"AssociationThread", "[", 
+    RowBox[{
+     RowBox[{"Keys", "[", "sourceFiles", "]"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Audio", "[", "#", "]"}], "&"}], "/@", 
+      RowBox[{"Values", "[", "sourceFiles", "]"}]}]}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.7022391261625614`*^9, 3.7022391827540426`*^9}, {
+   3.702239273744971*^9, 3.7022394117077365`*^9}, {3.7022394510312934`*^9, 
+   3.7022394634663815`*^9}, {3.702239500457706*^9, 3.7022395325540423`*^9}, 
+   3.7022395703756123`*^9, {3.702239618920721*^9, 3.7022396560894966`*^9}, {
+   3.7022397164821873`*^9, 3.702239750302107*^9}, {3.7022397855939837`*^9, 
+   3.702239811025551*^9}, {3.702239843186067*^9, 3.7022399378487453`*^9}, {
+   3.702240001244306*^9, 3.7022400033399267`*^9}, {3.702240077700632*^9, 
+   3.702240166170816*^9}, {3.7022405467358913`*^9, 3.7022405752376785`*^9}, 
+   3.702240671136654*^9, {3.702241088103279*^9, 3.7022410948962955`*^9}, 
+   3.7022413805829296`*^9},ExpressionUUID->"5b8895c0-8e74-45b1-8b0c-\
+aa450f0e9ea2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"analyze", "[", "audio_", "]"}], ":=", 
+  RowBox[{"AudioLocalMeasurements", "[", 
+   RowBox[{"audio", ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Power\>\"", ",", "\"\<Loudness\>\"", ",", "\"\<RMSAmplitude\>\"", 
+      ",", "\"\<HighFrequencyContent\>\"", ",", "\"\<SpectralCentroid\>\"", 
+      ",", "\"\<SpectralCrest\>\""}], "}"}], ",", 
+    RowBox[{"PartitionGranularity", "\[Rule]", 
+     RowBox[{
+      RowBox[{"Duration", "[", "audio", "]"}], "/", "500"}]}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.7022306957215157`*^9, 3.7022307999566555`*^9}, {
+   3.702230851033501*^9, 3.7022308591259837`*^9}, {3.7022310258617353`*^9, 
+   3.702231053822069*^9}, {3.702232636114704*^9, 3.702232753340376*^9}, {
+   3.7022328022606335`*^9, 3.7022328147879095`*^9}, 3.702233199773497*^9, 
+   3.702241059637595*^9},ExpressionUUID->"c22831b2-e74b-4ea7-b8b5-\
+dd95453f6dd2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", "=", 
+   RowBox[{"AssociationMap", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"analyze", "[", 
+       RowBox[{"sounds", "[", "#", "]"}], "]"}], "&"}], ",", 
+     RowBox[{"Keys", "[", "sounds", "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.702230867606549*^9, 3.7022309961497345`*^9}, 
+   3.70223103930348*^9, 3.702233191440381*^9, {3.70223326770813*^9, 
+   3.7022333278480186`*^9}, {3.702233389039751*^9, 3.7022334042852807`*^9}, {
+   3.7022334360557556`*^9, 3.7022334924697123`*^9}, {3.7022338971266108`*^9, 
+   3.702233925447954*^9}, 3.7022340269086714`*^9, {3.7022340950187635`*^9, 
+   3.7022341009224615`*^9}, {3.702234767209977*^9, 3.7022347921131954`*^9}, 
+   3.70223483146281*^9, 3.702235263698494*^9, {3.7022406135585485`*^9, 
+   3.7022406159238143`*^9}, {3.702240919024701*^9, 3.702240924542361*^9}, {
+   3.7022411224305344`*^9, 
+   3.7022411287844*^9}},ExpressionUUID->"8a7496a2-645a-4199-8af0-\
+3825987e1538"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"clean", "=", 
+   RowBox[{"AssociationMap", "[", 
+    RowBox[{
+     RowBox[{"Function", "[", 
+      RowBox[{
+       RowBox[{"{", "s", "}"}], ",", 
+       RowBox[{"AssociationMap", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Rescale", "[", 
+           RowBox[{
+            RowBox[{"data", "[", "s", "]"}], "[", "#", "]"}], "]"}], "&"}], 
+         ",", 
+         RowBox[{"Keys", "[", 
+          RowBox[{"data", "[", "s", "]"}], "]"}]}], "]"}]}], "]"}], ",", 
+     RowBox[{"Keys", "[", "data", "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{
+  3.702233549950573*^9, {3.702234080608449*^9, 3.7022340894760695`*^9}, {
+   3.702234728395788*^9, 3.7022347603637733`*^9}, {3.702234805829686*^9, 
+   3.702234838103466*^9}, 3.7022352988409414`*^9, {3.7022371596945767`*^9, 
+   3.702237320170287*^9}},ExpressionUUID->"150603bf-75bf-4d88-870c-\
+bc340014b8b9"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Table", "[", 
+  RowBox[{
+   RowBox[{"Export", "[", 
+    RowBox[{
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<scrots\>\"", ",", 
+        RowBox[{"\"\<plot_\>\"", "<>", 
+         RowBox[{"ToString", "[", "i", "]"}], "<>", "\"\<.svg\>\""}]}], "}"}],
+       "]"}], ",", 
+     RowBox[{"ListLinePlot", "[", 
+      RowBox[{
+       RowBox[{
+       "clean", "\[LeftDoubleBracket]", "i", "\[RightDoubleBracket]"}], ",", 
+       RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", "\"\<SVG\>\"", 
+     ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", 
+     RowBox[{"Length", "[", "clean", "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7022414004738116`*^9, 3.7022414738228827`*^9}, {
+  3.702241560787077*^9, 3.7022416439602036`*^9}, {3.702241697491528*^9, 
+  3.7022417491348295`*^9}, {3.702241819422707*^9, 3.7022418242595787`*^9}, {
+  3.702241883098052*^9, 3.7022418852226677`*^9}, {3.702242012574689*^9, 
+  3.7022420769478064`*^9}, {3.7022422183969264`*^9, 3.7022422527151346`*^9}, {
+  3.702242285274701*^9, 3.7022422859304414`*^9}},
+ NumberMarks->False,ExpressionUUID->"c90e7be5-2e67-4230-993b-e70a24178c67"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"C:\\\\Users\\\\master\\\\Documents\\\\school\\\\csci-5980\\\\\
+final\\\\data\\\\plot_1.svg\"\>", 
+   ",", "\<\"C:\\\\Users\\\\master\\\\Documents\\\\school\\\\csci-5980\\\\\
+final\\\\data\\\\plot_2.svg\"\>", 
+   ",", "\<\"C:\\\\Users\\\\master\\\\Documents\\\\school\\\\csci-5980\\\\\
+final\\\\data\\\\plot_3.svg\"\>", 
+   ",", "\<\"C:\\\\Users\\\\master\\\\Documents\\\\school\\\\csci-5980\\\\\
+final\\\\data\\\\plot_4.svg\"\>", 
+   ",", "\<\"C:\\\\Users\\\\master\\\\Documents\\\\school\\\\csci-5980\\\\\
+final\\\\data\\\\plot_5.svg\"\>", 
+   ",", "\<\"C:\\\\Users\\\\master\\\\Documents\\\\school\\\\csci-5980\\\\\
+final\\\\data\\\\plot_6.svg\"\>", 
+   ",", "\<\"C:\\\\Users\\\\master\\\\Documents\\\\school\\\\csci-5980\\\\\
+final\\\\data\\\\plot_7.svg\"\>", 
+   ",", "\<\"C:\\\\Users\\\\master\\\\Documents\\\\school\\\\csci-5980\\\\\
+final\\\\data\\\\plot_8.svg\"\>", 
+   ",", "\<\"C:\\\\Users\\\\master\\\\Documents\\\\school\\\\csci-5980\\\\\
+final\\\\data\\\\plot_9.svg\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.702241386442536*^9, 3.7022414787860355`*^9, 
+  3.702241705489786*^9, 3.702241830932311*^9, 3.702241892022735*^9, 
+  3.70224208307609*^9},ExpressionUUID->"05f529af-a5c2-4765-93bc-09610dd8312d"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"saveCSV", "[", 
+   RowBox[{"c_", ",", "name_", ",", "type_"}], "]"}], ":=", 
+  RowBox[{"Export", "[", 
+   RowBox[{
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<data\>\"", ",", 
+       RowBox[{
+       "name", "<>", "\"\<_[\>\"", "<>", "type", "<>", "\"\<].json\>\""}]}], 
+      "}"}], "]"}], ",", "c", ",", "\"\<CSV\>\""}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7022330533381577`*^9, 3.7022331083093133`*^9}, {
+  3.702233146056677*^9, 3.702233182070467*^9}, {3.7022332171807785`*^9, 
+  3.7022332621193*^9}, {3.7022377446909547`*^9, 
+  3.702237781941018*^9}},ExpressionUUID->"0f5969b1-2efe-464b-9ef0-\
+3953479dccb6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Function", "[", 
+      RowBox[{
+       RowBox[{"{", "p", "}"}], ",", 
+       RowBox[{"saveCSV", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"clean", "[", "#", "]"}], "[", "p", "]"}], "[", 
+          "\"\<Values\>\"", "]"}], ",", 
+         RowBox[{"#", "<>", "\"\<_\>\"", "<>", "p"}], ",", 
+         "\"\<scalars\>\""}], "]"}]}], "]"}], "/@", 
+     RowBox[{"Keys", "[", 
+      RowBox[{"clean", "[", "#", "]"}], "]"}]}], "&"}], "/@", 
+   RowBox[{"Keys", "[", "clean", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.702233573922304*^9, 3.7022335793397193`*^9}, {
+   3.7022336138464727`*^9, 3.702233643669766*^9}, {3.702233678367978*^9, 
+   3.7022337672553606`*^9}, {3.702233800135769*^9, 3.702233837310611*^9}, 
+   3.702234047612727*^9, {3.702237449129123*^9, 3.702237455149127*^9}, {
+   3.702237520599169*^9, 3.702237700350092*^9}, {3.702237750972705*^9, 
+   3.70223775400572*^9}, 
+   3.702237821030927*^9},ExpressionUUID->"0b3c7d3a-d4cf-4e05-9bff-\
+9a30ef23e700"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"savePlotSVG", "[", 
+   RowBox[{"c_", ",", "name_", ",", "type_"}], "]"}], ":=", 
+  RowBox[{"Export", "[", 
+   RowBox[{
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<scrots\>\"", ",", 
+       RowBox[{
+       "\"\<plot_\>\"", "<>", "name", "<>", "\"\<_[\>\"", "<>", "type", "<>", 
+        "\"\<].svg\>\""}]}], "}"}], "]"}], ",", "c", ",", "\"\<SVG\>\"", ",", 
+    RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.70224232507051*^9, 3.702242341446042*^9}, {
+  3.7022423824300184`*^9, 3.702242400488064*^9}, {3.702242586494624*^9, 
+  3.7022425921125193`*^9}},ExpressionUUID->"bd985a51-20f5-4023-9ac1-\
+1b17fd0450e2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"savePlotSVG", "[", 
+     RowBox[{
+      RowBox[{"ListLinePlot", "[", 
+       RowBox[{
+        RowBox[{"clean", "[", "#", "]"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+      RowBox[{"#", "<>", "\"\<_\>\"", "<>", "#"}], ",", "\"\<scalars\>\""}], 
+     "]"}], "&"}], "/@", 
+   RowBox[{"Keys", "[", "clean", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7022424174431467`*^9, 3.7022424185550995`*^9}, {
+  3.7022424654808326`*^9, 
+  3.7022425763355637`*^9}},ExpressionUUID->"fae4b226-fa27-46f4-bbc7-\
+d121d0c9e44a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ALMproperties", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<Max\>\"", ",", "\"\<MaxAbs\>\"", ",", "\"\<Min\>\"", ",", 
+     "\"\<MinAbs\>\"", ",", "\"\<MinMax\>\"", ",", "\"\<MinMaxAbs\>\"", ",", 
+     "\"\<Mean\>\"", ",", "\"\<Median\>\"", ",", "\"\<StandardDeviation\>\"", 
+     ",", "\"\<Total\>\"", ",", "\"\<Power\>\"", ",", "\"\<RMSAmplitude\>\"", 
+     ",", "\"\<Loudness\>\"", ",", "\"\<CrestFactor\>\"", ",", 
+     "\"\<Entropy\>\"", ",", "\"\<LPC\>\"", ",", 
+     "\"\<PeakToAveragePowerRatio\>\"", ",", "\"\<TemporalCentroid\>\"", ",", 
+     "\"\<ZeroCrossingRate\>\"", ",", "\"\<ZeroCrossings\>\"", ",", 
+     "\"\<FundamentalFrequency\>\"", ",", "\"\<Formants\>\"", ",", 
+     "\"\<HighFrequencyContent\>\"", ",", "\"\<MFCC\>\"", ",", 
+     "\"\<SpectralCentroid\>\"", ",", "\"\<SpectralCrest\>\"", ",", 
+     "\"\<SpectralFlatness\>\"", ",", "\"\<SpectralKurtosis\>\"", ",", 
+     "\"\<SpectralRollOff\>\"", ",", "\"\<SpectralSkewness\>\"", ",", 
+     "\"\<SpectralSlope\>\"", ",", "\"\<SpectralSpread\>\"", ",", 
+     "\"\<ComplexDomainDistance\>\"", ",", "\"\<ModifiedKullbackLeibler\>\"", 
+     ",", "\"\<Novelty\>\"", ",", "\"\<PhaseDeviation\>\"", ",", 
+     "\"\<SpectralFlux\>\""}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7017768109177227`*^9, 3.7017768142494373`*^9}, {
+  3.701776887362851*^9, 3.7017769657853084`*^9}, {3.701777042276684*^9, 
+  3.7017773848119564`*^9}, {3.7022218031719503`*^9, 
+  3.7022218165023813`*^9}},ExpressionUUID->"6aff6cc3-655a-4e2f-a70b-\
+ca929c357340"]
+},
+WindowSize->{798, 818},
+WindowMargins->{{-7, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (March 13, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1978, 45, 140, "Input", "ExpressionUUID" -> \
+"ef31cbd5-b51e-41f8-967a-0ac05202af65"],
+Cell[2539, 67, 907, 19, 69, "Input", "ExpressionUUID" -> \
+"675d436b-3dc8-4f77-b1c9-858c8094a7d5"],
+Cell[3449, 88, 977, 19, 30, "Input", "ExpressionUUID" -> \
+"8a7496a2-645a-4199-8af0-3825987e1538"],
+Cell[4429, 109, 903, 23, 50, "Input", "ExpressionUUID" -> \
+"150603bf-75bf-4d88-870c-bc340014b8b9"],
+Cell[CellGroupData[{
+Cell[5357, 136, 1293, 28, 50, "Input", "ExpressionUUID" -> \
+"8e5465ad-af3f-4b59-b054-c91c40a414e4"],
+Cell[6653, 166, 1262, 22, 183, "Output", "ExpressionUUID" -> \
+"05f529af-a5c2-4765-93bc-09610dd8312d"]
+}, Open  ]],
+Cell[7930, 191, 733, 17, 50, "Input", "ExpressionUUID" -> \
+"0f5969b1-2efe-464b-9ef0-3953479dccb6"],
+Cell[8666, 210, 1072, 26, 50, "Input", "ExpressionUUID" -> \
+"0b3c7d3a-d4cf-4e05-9bff-9a30ef23e700"],
+Cell[9741, 238, 764, 17, 69, "Input", "ExpressionUUID" -> \
+"bd985a51-20f5-4023-9ac1-1b17fd0450e2"],
+Cell[10508, 257, 603, 16, 30, "Input", "ExpressionUUID" -> \
+"fae4b226-fa27-46f4-bbc7-d121d0c9e44a"],
+Cell[11114, 275, 1547, 26, 164, "Input", "ExpressionUUID" -> \
+"6aff6cc3-655a-4e2f-a70b-ca929c357340"]
+}
+]
+*)
+
